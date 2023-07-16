@@ -16,7 +16,7 @@ def bfs(y,x):
         for i in range(4):
             ny=dy[i]+y
             nx=dx[i]+x
-            if ny<0 or ny>=N or nx<0 or nx>=M:
+            if ny<0 or ny>=N or nx<0 or nx>=M or graph[ny][nx]=='X':
                 continue
             if graph[ny][nx]=='O':
                 queue.append((ny,nx))
