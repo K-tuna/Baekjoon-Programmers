@@ -1,11 +1,11 @@
-n=int(input()) #단어의 개수 입력
+n=int(input())
 result=0
 for _ in range(n):
-    word=['']+list(input()) #단어를 리스트로 입력받음 예)['','h','a','p','p','y']
-    memory=set()
+    word=['']+list(input())
+    hash = {}
     for i in range(1,len(word)):
-        if word[i] in memory and word[i]!=word[i-1]:
+        if word[i] in hash and word[i]!=word[i-1]:
             result+=1
             break
-        memory.add(word[i])
+        hash[word[i]]=hash.setdefault(word[i],True)
 print(n-result)
