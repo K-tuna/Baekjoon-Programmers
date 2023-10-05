@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(1000000)
+input=sys.stdin.readline
 n=int(input())
 dp=[1]*(n+1)
 dp[1]=3
