@@ -10,7 +10,8 @@ def solution(sequence, k):
             end += 1
         if interval_sum == k:
             result.append([start,end-1])
+            result.sort(key=lambda x:(x[1]-x[0],x[0]))
+            result=[result[0]]
             
         interval_sum -= sequence[start]
-    result.sort(key=lambda x:(x[1]-x[0],x[0]))
     return result[0]
