@@ -7,12 +7,11 @@ for _ in range(N):
     buildings.append(int(input()))
 ans = 0
 
-for i in range(N):
-    while stack:
-        if buildings[i] >= stack[-1]:
-            stack.pop()
-        else:
-            ans += len(stack)
-            break
-    stack.append(buildings[i])
+for b in buildings:
+    while stack and stack[-1] <= b:
+        stack.pop()
+    stack.append(b)
+
+    ans += len(stack) - 1
+    
 print(ans)
