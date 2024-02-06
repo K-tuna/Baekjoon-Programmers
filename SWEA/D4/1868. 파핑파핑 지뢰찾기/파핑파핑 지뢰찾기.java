@@ -26,7 +26,6 @@ public class Solution {
 			int answer=0; // 답
 			int first=0; // 먼저 누를곳
 			int total=N*N; // 전체 배열 수
-			int last=0;
 			vc=0;
 			
 			for(int i=0; i<N; i++) {
@@ -40,13 +39,13 @@ public class Solution {
 					}
 				}
 			}
-            
+			
 			while(!bomb.isEmpty()) { // 지뢰 근처에 1씩 증가
 				int[] now = bomb.poll();
 				for(int d=0; d<8; d++) {
 					int nr = now[0] + dr[d];					
 					int nc = now[1] + dc[d];
-					if(0<=nr&&nr<N && 0<=nc&&nc<N && arr[nr][nc]=='.') {
+					if(0<=nr&&nr<N && 0<=nc&&nc<N) {
 						number[nr][nc]++;
 					}
 				}
@@ -54,25 +53,15 @@ public class Solution {
 			
 			for(int i=0; i<N; i++) { // bfs로 먼저 누를곳 누르기 
 				for(int j=0; j<N; j++) {
-					if(arr[i][j]=='.' && !visited[i][j] && number[i][j]==0) {
+					if(!visited[i][j] && number[i][j]==0) {
 						bfs(i,j);
 						first++;
 					}
 				}
 			}
 			
-//			for(int i=0; i<N; i++) { // 나머지 누르기 
-//				for(int j=0; j<N; j++) {
-//					if(!visited[i][j]) {
-//						last++;
-//					}
-//				}
-//			}
+			answer = total - vc + first;
 			
-			answer = total- vc + first;
-			
-//			System.out.println("answer: "+answer+" first: "+first);
-//			answer = first+last;
 			sb.append("#").append(tc).append(" ").append(answer).append("\n");
 		}
 		System.out.println(sb);
@@ -89,7 +78,7 @@ public class Solution {
 				int nr = now[0] + dr[d];
 				int nc = now[1] + dc[d];
 				
-				if(0<=nr&&nr<N && 0<=nc&&nc<N && !visited[nr][nc] && arr[nr][nc]=='.') {
+				if(0<=nr&&nr<N && 0<=nc&&nc<N && !visited[nr][nc]) {
 					visited[nr][nc]=true;
 					vc++;
 					if(number[nr][nc]==0) {
