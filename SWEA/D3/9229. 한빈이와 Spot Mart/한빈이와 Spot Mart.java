@@ -8,10 +8,8 @@ public class Solution {
 	static StringBuilder sb = new StringBuilder();
 	
 	static void comb(int cnt, int start, int sum) {
-		if(sum>M)
-			return;
 		if(cnt==2) {
-			if(answer<sum)
+			if(sum<=M && answer<sum)
 				answer=sum;
 			return;
 		}
@@ -20,7 +18,7 @@ public class Solution {
 			comb(cnt+1, i+1 , sum+arr[i]);
 		}
 	}
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// T
