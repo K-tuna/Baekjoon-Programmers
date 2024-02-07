@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Solution {
 	static int N;
-	static int[][] map;
-	static int[] dr={1,-1,0,0};
+	static int[][] map; //배열
+	static int[] dr={1,-1,0,0}; //상하좌우
 	static int[] dc={0,0,1,-1};
 	static StringBuilder sb = new StringBuilder();
 	
@@ -14,7 +14,7 @@ public class Solution {
 		for(int tc=1; tc<=10; tc++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
-			int si=0;
+			int si=0; //출발지점 si,sj
 			int sj=0;
 			
 			map=new int[100][100]; // 원본 배열
@@ -45,14 +45,14 @@ public class Solution {
 				int nr = r + dr[d];
 				int nc = c + dc[d];
 				if(0<=nr&&nr<100 && 0<=nc&&nc<100 && map[nr][nc]!=1) {
-					if(map[nr][nc]==3) {
-						return 1;
+					if(map[nr][nc]==3) { // 3에 도착하면
+						return 1; // 1 리턴
 					}
-					map[nr][nc]=1;
+					map[nr][nc]=1; // 1로 바꿔줌
 					queue.offerLast(new int[] {nr,nc});
 				}
 			}
 		}
-		return 0;
+		return 0; // 도착 못하면 0 리턴
 	}
 }
