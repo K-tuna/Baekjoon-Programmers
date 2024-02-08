@@ -8,7 +8,6 @@ public class Solution {
 	static int ans;
 	
 	public static void main(String[] args) throws Exception{
-//		System.setIn(new FileInputStream("res/input_d3_5215.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
@@ -32,15 +31,10 @@ public class Solution {
 				score[i] = s;
 				cal[i] = c;
 			}
-			
-			
 			dfs(0,0,0);
-			
 			sb.append("#").append(tc).append(" ").append(ans).append("\n");
 		}
-		
-		System.out.println(sb.toString());
-		
+		System.out.println(sb);
 		br.close();
 	}
 	
@@ -57,5 +51,4 @@ public class Solution {
 		dfs(i+1, total_score + score[i], total_cal + cal[i]);
 		dfs(i+1, total_score, total_cal);
 	}
-
 }
