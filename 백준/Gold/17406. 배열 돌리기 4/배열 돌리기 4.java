@@ -41,32 +41,13 @@ public class Main {
 			a[k][2]= r+s-1;
 			a[k][3]= c+s-1;
 		}
-//		for (int i = 0; i < K; i++) {
-//			for (int j = 0; j < 4; j++) {
-//				System.out.print(a[i][j]+" ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
-		
 		perm(0);
-
-		
-		
 		sb.append(min);
-		
 		System.out.println(sb);
 		br.close();
 	}
 	static void perm(int cnt) {
 		if(cnt==K) {
-//			for (int i = 0; i < K; i++) {
-//				for (int j = 0; j < 4; j++) {
-//					sb.append(b[i][j]+" ");
-//				}
-//				sb.append("\n");
-//			}
-//			sb.append("\n");
 			turnArr();
 			return;
 		}
@@ -85,8 +66,6 @@ public class Main {
 			int r2= b[t][2];
 			int c1= b[t][1];
 			int c2= b[t][3];
-//			sb.append("r1,r2,c1,c2 "+r1+" "+r2+" "+c1+" "+c2+"\n");
-//			printArr();
 			int round = Math.min(r2-r1+1, c2-c1+1)/2;
 			for(int i=r1,j=c1,idx=0;i<r1+round||j<c1+round;i++,j++,idx++) {
 				int cnt = 0;
@@ -100,19 +79,15 @@ public class Main {
 						map[x][y] = map[nx][ny];
 						x = nx;
 						y = ny;
-//						printArr();
 					}
 					else {
 						cnt++;
 					}
 				}
 				map[i][j+1] = now;
-//				printArr();
 			}
-//			sb.append("1개 연산 끝\n\n");
 		}
 		sum();
-//		sb.append("k개 연산 끝\n\n");
 	}
 	static void sum() {
 		for(int i=0; i<N; i++) {
@@ -120,7 +95,6 @@ public class Main {
 			for(int j=0; j<M; j++) {
 				total+=map[i][j];
 			}
-//			sb.append("sum: "+total+"\n");
 			if (min>total) {
 				min=total;
 			}
@@ -132,14 +106,5 @@ public class Main {
 				map[i][j]=tmp[i][j];
 			}
 		}
-	}
-	static void printArr() {
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<M; j++) {
-				sb.append(map[i][j]+" ");
-			}
-			sb.append("\n");
-		}
-		sb.append("\n");
 	}
 }
