@@ -1,36 +1,56 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class Main {
-    static int[] cnt = new int[2];
-    static int[][] paper;
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-
-        paper = new int[N][N];
-        for (int i = 0; i < N; i++)
-            for (int j = 0; j < N; j++)
-                paper[i][j] = sc.nextInt();
-
-        divide(N, 0, 0);
-        for (int n : cnt)
-            System.out.println(n);
-    }
-
-    static void divide(int n, int y, int x) {
-        for (int i = y; i < y + n; i++) {
-            for (int j = x; j < x + n; j++)
-                if (paper[i][j] != paper[y][x]) {
-                    divide(n / 2, y, x);
-                    divide(n / 2, y + n / 2, x);
-                    divide(n / 2, y, x + n / 2);
-                    divide(n / 2, y + n / 2, x + n / 2);
-
-                    return;
-                }
-        }
-
-        cnt[paper[y][x]]++;
-    }
+public class Main { //조합
+	static int N;
+	static int[][] map;
+	static int white,blue;
+	static StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		map = new int[N][N];
+		white=0;
+		blue=0;
+		for(int i=0; i<N; i++) {
+			st=new StringTokenizer(br.readLine());
+			for(int j=0; j<N; j++) {
+				map[i][j]=Integer.parseInt(st.nextToken());
+			}
+		}
+		divide(0, 0, N);
+		sb.append(white).append("\n").append(blue);
+		System.out.println(sb);
+		br.close();
+	}
+	
+	static void divide(int r, int c, int n) {
+		if(check(r, c, n)) {
+			int color = map[r][c];
+			if(color==1) {
+				blue++;
+			}else {
+				white++;
+			}
+			return;
+		}
+		
+		int half = n/2;
+		divide(r, c, half);
+		divide(r, c+half, half);
+		divide(r+half, c, half);
+		divide(r+half, c+half, half);
+	}
+	
+	static boolean check(int r, int c, int n) {
+		int color = map[r][c];
+		for(int i=r; i<r+n; i++) {
+			for(int j=c; j<c+n; j++) {
+				if(color != map[i][j])
+					return false;
+			}
+		}
+		return true;
+	}
 }
