@@ -38,7 +38,6 @@ public class Main {
         br.close();
 	}
 	
-	
 	static void turn() {
 		d=(d+3)%4;
 	}
@@ -49,17 +48,10 @@ public class Main {
 		while(true) {
 			if(isCanGo(r, c)) {
 				cnt++;
-//				sb.append(cnt+"\n");
-//				print();
 			}
-			else {
-				if(!canBack()) {
-					break;
-				}
-				
+			else if(!canBack()) {
+				break;
 			}
-			
-//			printarr();
 		}
 	}
 	
@@ -81,8 +73,6 @@ public class Main {
 		return false;
 	}
 	
-	
-	
 	static boolean canBack() {
 		int nr = r + dr[(d+2)%4];
 		int nc = c + dc[(d+2)%4];
@@ -93,26 +83,5 @@ public class Main {
 			return true;
 		}
 		return false;
-	}
-	
-	static void print() {
-		sb.append("====================\n");
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<M; j++) {
-				sb.append(map[i][j]+" ");
-			}
-			sb.append("\n");
-		}
-		sb.append("\n");
-	}
-	static void printarr() {
-		System.out.print("====================\n");
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<M; j++) {
-				System.out.print(map[i][j]+" ");
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n");
 	}
 }
