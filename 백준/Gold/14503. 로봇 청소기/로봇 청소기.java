@@ -38,10 +38,6 @@ public class Main {
         br.close();
 	}
 	
-	static void turn() {
-		d=(d+3)%4;
-	}
-	
 	static void process() {
 		cnt++;
 		visited[r][c]=true;
@@ -57,16 +53,15 @@ public class Main {
 	
 	static boolean isCanGo(int x, int y) {
 		for(int i=0; i<4; i++) {
-			turn();
+//			turn();
+			d=(d+3)%4;
 			int nr = r + dr[d];
 			int nc = c + dc[d];
 			if(nr<0 || nr>=N || nc<0 || nc>=M) continue;
 			if(map[nr][nc]==0 && !visited[nr][nc]) {
-
 				r=nr;
 				c=nc;
 				map[nr][nc]=2;
-
 				return true;
 			}
 		}
