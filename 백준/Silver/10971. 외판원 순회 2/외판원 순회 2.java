@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-
 	static int N;
 	static int[][] map;
 	static boolean[] v;
@@ -22,10 +21,10 @@ public class Main {
 				map[i][j]=Integer.parseInt(st.nextToken());
 			}
 		}
-		for(int i=0; i<N; i++) {
-			dfs(i,0,i,1);
-		}
+		dfs(0,0,0,1);
+		
 		System.out.println(min);
+		
 	}
 	
 	static void dfs(int i, int cost, int first, int cnt) {
