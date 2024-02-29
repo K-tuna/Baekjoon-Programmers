@@ -1,0 +1,53 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+	static int N;
+	static int[][] map;
+	static boolean[] v;
+	static boolean[][] visited;
+	static int min;
+	static StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		map = new int[N][N];
+		v = new boolean[N];
+		visited = new boolean[N][N];
+		min = Integer.MAX_VALUE;
+		
+		for(int i=0; i<N; i++) {
+			st = new StringTokenizer(br.readLine());
+			for(int j=0; j<N; j++) {
+				map[i][j]=Integer.parseInt(st.nextToken());
+			}
+		}
+		for(int i=0; i<N; i++) {
+			dfs(i,0,i,1);
+		}
+		
+		System.out.println(min);
+		
+	}
+	
+	static void dfs(int i, int cost, int first, int cnt) {
+		if (cnt==N) {
+			if (map[i][first]!=0  && !visited[i][first]) {
+				min = Math.min(min, cost+map[i][first]);
+			}
+			return;
+		}
+		
+		for(int j=0; j<N; j++) {
+			if(map[i][j]!=0 && !v[j] && !visited[i][j]) {
+				v[i]=true;
+				visited[i][j]=true;
+				dfs(j,cost+map[i][j],first,cnt+1);
+				visited[i][j]=false;
+				v[i]=false;
+			}
+		}
+	}
+}
