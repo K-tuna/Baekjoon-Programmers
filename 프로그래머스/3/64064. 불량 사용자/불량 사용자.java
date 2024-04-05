@@ -9,7 +9,7 @@ class Solution {
     static boolean[] v;
     static int bi,ui;
     static String[] regexArr;
-    static int S=0;
+    static int bit=0;
     static Set<Integer> set = new HashSet<>();
     
     public int solution(String[] user_id, String[] banned_id) {
@@ -42,9 +42,9 @@ class Solution {
     
     static void perm(int cnt){
         if(cnt == bi){
-            if(isList() && !set.contains(S)){
+            if(isList() && !set.contains(bit)){
                 ans++;
-                set.add(S);
+                set.add(bit);
                 return;
             }
                 
@@ -53,25 +53,14 @@ class Solution {
         for(int i=0; i<ui; i++){
             if(v[i]) continue;
             b[cnt] = a[i];
-            S |= (1<<i);
+            bit |= (1<<i);
             v[i] = true;
             perm(cnt+1);
             v[i] = false;
-            S &= ~(1<<i);
+            bit &= ~(1<<i);
         }
         
     }
-//     static void comb(int cnt, int start){
-//         if(cnt == bi){
-//             isList();
-//             return;
-//         }
-//         for(int i=start; i<ui; i++){
-//             b[cnt] = a[i];
-//             comb(cnt+1, i+1);
-//         }
-        
-//     }
     
     static boolean isList(){
         for(int i=0; i<bi; i++){
