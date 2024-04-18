@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 class Solution {
-    public int[] solution(String[] genres, int[] plays) {
+    public List<Integer> solution(String[] genres, int[] plays) {
         List<Integer> ansList = new ArrayList<>(); // 정답 리스트 (나중에 배열로 변환)
         int N = genres.length;
         HashMap<String, Integer> totalMap = new HashMap<>(); // key 장르 str, value에 플레이 시간합 int map 만들기
@@ -35,12 +35,7 @@ class Solution {
                 ansList.add(list.get(1)[0]); // 두번째 고유번호 추가
             }
         }
-        
-        int[] answer = new int[ansList.size()]; // 리스트 to 배열 하기
-        for(int i=0; i<ansList.size(); i++){
-            answer[i] = ansList.get(i);
-        }
 
-        return answer;
+        return ansList;
     }
 }
