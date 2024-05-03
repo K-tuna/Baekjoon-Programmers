@@ -1,40 +1,38 @@
-import java.io.*;
 import java.util.*;
-
-class Node implements Comparable<Node>{
-	int end,w;
-	
-	public Node(int end, int w) {
-		this.end = end;
-		this.w = w;
-	}
-
-	@Override
-	public int compareTo(Node o) {
-		return this.w - o.w;
-	}
-	
-}
+import java.io.*;
 
 public class Main {
-	static boolean[] visit;
+	static class Node implements Comparable<Node>{
+		int end, w;
+		
+		public Node(int end, int w) {
+			this.end = end;
+			this.w = w;
+		}
+		
+		@Override
+		public int compareTo(Node o) {
+			return this.w - o.w;
+		}
+		
+	}
+	static boolean[] v;
 	static int[] dist;
 	static List<Node>[] list;
 	
 	static int V,E,K;
 	static final int INF = 100_000_000;
-
+	
 	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		V = Integer.parseInt(st.nextToken());
 		E = Integer.parseInt(st.nextToken());
-		
 		K = Integer.parseInt(br.readLine());
 		
-		visit = new boolean[V+1];
+		v = new boolean[V+1];
 		dist = new int[V+1];
 		list = new List[V+1];
 		
@@ -51,8 +49,7 @@ public class Main {
 			
 			list[start].add(new Node(end,weight));
 		}
-		
-		dijstra();
+		dijkstra();
 		
 		for(int i=1; i<=V; i++) {
 			if(dist[i] == INF) sb.append("INF\n");
@@ -61,23 +58,21 @@ public class Main {
 		System.out.println(sb);
 	}
 	
-	static void dijstra() {
+	static void dijkstra() {
 		PriorityQueue<Node> pq = new PriorityQueue<>();
-		boolean[] check = new boolean[V+1];
-		dist[K] = 0;
-		pq.add(new Node(K,0));
+		dist[K]=0;
+		pq.offer(new Node(K,0));
 		
 		while(!pq.isEmpty()) {
-			Node curNode = pq.poll();
-			int now = curNode.end;
+			int end = pq.poll().end;
 			
-			if(check[now]) continue;
-			check[now] = true;
+			if(v[end]) continue;
+			v[end] = true;
 			
-			for(Node node : list[now]) {
-				if(dist[node.end] > dist[now] + node.w) {
-					dist[node.end] = dist[now] + node.w;
-					pq.add(new Node(node.end, dist[node.end]));
+			for(Node node: list[end]) {
+				if(dist[node.end] > dist[end] + node.w) {
+					dist[node.end] = dist[end] + node.w;
+					pq.offer(new Node(node.end, dist[node.end]));
 				}
 			}
 		}
