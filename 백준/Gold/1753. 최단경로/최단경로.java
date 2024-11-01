@@ -1,9 +1,10 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
 	static class Node implements Comparable<Node>{
-		int end, w;
+		int end;
+		int w;
 		
 		public Node(int end, int w) {
 			this.end = end;
@@ -14,17 +15,17 @@ public class Main {
 		public int compareTo(Node o) {
 			return this.w - o.w;
 		}
-		
 	}
-	static boolean[] v;
-	static int[] dist;
-	static List<Node>[] list;
 	
 	static int V,E,K;
 	static final int INF = 100_000_000;
 	
+	static boolean[] v;
+	static int[] dist;
+	static List<Node>[] list;
+	
 	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -49,18 +50,20 @@ public class Main {
 			
 			list[start].add(new Node(end,weight));
 		}
+		
 		dijkstra();
 		
 		for(int i=1; i<=V; i++) {
-			if(dist[i] == INF) sb.append("INF\n");
+			if(dist[i]==INF) sb.append("INF\n");
 			else sb.append(dist[i] + "\n");
 		}
-		System.out.println(sb);
+		
+		System.out.print(sb);
 	}
 	
 	static void dijkstra() {
 		PriorityQueue<Node> pq = new PriorityQueue<>();
-		dist[K]=0;
+		dist[K] = 0;
 		pq.offer(new Node(K,0));
 		
 		while(!pq.isEmpty()) {
@@ -69,10 +72,10 @@ public class Main {
 			if(v[end]) continue;
 			v[end] = true;
 			
-			for(Node node: list[end]) {
-				if(dist[node.end] > dist[end] + node.w) {
-					dist[node.end] = dist[end] + node.w;
-					pq.offer(new Node(node.end, dist[node.end]));
+			for(Node n : list[end]) {
+				if( dist[n.end] > dist[end] + n.w) {
+					dist[n.end] = dist[end] + n.w;
+					pq.offer(new Node(n.end, dist[n.end]));
 				}
 			}
 		}
