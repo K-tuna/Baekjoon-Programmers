@@ -5,6 +5,6 @@ class Solution {
         for(int i=0; i<str.length(); i++){
             sum += str.charAt(i)-'0';
         }
-        return x%sum==0 ? true:false;
+        return x%sum==0;
     }
 }
