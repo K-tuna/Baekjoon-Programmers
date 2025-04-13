@@ -1,13 +1,13 @@
 import java.util.*;
 class Solution {
-    public List<Integer> solution(int k, int[] score) {
-        List<Integer> list = new ArrayList<>();
+    public int[] solution(int k, int[] score) {
+        int[] result = new int[score.length];
         PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for(int n : score){
-            pq.add(n);
+        for(int i=0; i<score.length; i++){
+            pq.add(score[i]);
             if(pq.size()>k) pq.poll();
-            list.add(pq.peek());
+            result[i] = pq.peek();
         }
-        return list;
+        return result;
     }
 }
