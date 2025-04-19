@@ -1,15 +1,14 @@
 import java.util.*;
 class Solution {
     public int solution(int n, int m, int[] section) {
-        int result = 0;
-        int idx = 0;
-        while(idx<section.length){
-            int last = section[idx] + m - 1;
-            result++;
-            while(idx<section.length && section[idx] <= last){
-                idx++;
+        int cnt = 1;
+        int now = section[0];
+        for(int i=1; i<section.length; i++){
+            if(now + m -1 < section[i]){
+                cnt++;
+                now = section[i];
             }
         }
-        return result;
+        return cnt;
     }
 }
