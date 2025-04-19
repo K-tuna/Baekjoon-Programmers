@@ -1,14 +1,12 @@
-import java.util.*;
 class Solution {
     public int solution(int n, int m, int[] section) {
-        int cnt = 1;
-        int now = section[0];
-        for(int i=1; i<section.length; i++){
-            if(now + m -1 < section[i]){
-                cnt++;
-                now = section[i];
+        int maxPainted = 0, cntPaint = 0;
+        for (int point : section) {
+            if (maxPainted <= point) {
+                maxPainted = point + m;
+                cntPaint++;
             }
         }
-        return cnt;
+        return cntPaint;
     }
 }
