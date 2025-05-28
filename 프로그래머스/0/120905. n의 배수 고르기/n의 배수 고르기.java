@@ -1,10 +1,10 @@
 import java.util.*;
 class Solution {
-    public List<Integer> solution(int n, int[] numlist) {
+    public int[] solution(int n, int[] numlist) {
         List<Integer> list = new ArrayList<>();
         for(int num : numlist){
             if(num%n==0) list.add(num);
         }
-        return list;
+        return list.stream().mapToInt(x -> x).toArray();
     }
 }
